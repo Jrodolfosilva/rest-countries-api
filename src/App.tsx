@@ -1,8 +1,8 @@
 import { Home } from "./pages/Home"
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Description from "./pages/Description"
-import Test from "./pages/Test"
 import Header from "./components/Header"
+import Search from "./components/Search"
 function App() {
 
   return (
@@ -11,9 +11,8 @@ function App() {
      <Header/>
 
   <Routes>
-  <Route path="/" element={<Home/>}/>
+  <Route path="/" element={<Search/>}/>
       <Route path="/description/:name" element={<Description/>}/>
-      <Route path="/tes" element={<Test/>}/>
   </Routes>
       
     </div>

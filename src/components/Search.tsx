@@ -1,16 +1,15 @@
 import React,{useState,useEffect} from "react";
-import { Home } from "../pages/Home";
-import useAPI from "../services/useAPI";
-
-const [load,error,dados] = useAPI("")
+import Card from "./Card";
+import axios from "axios";
 
 
 const Search = ()=>{
     type search = string
     const [search,setSearch] = useState<search>()
     const [region,setRegion] = useState("")
-
-
+    const [dados,setDados] = useState([])
+    const [load,setLoad] = useState(false)
+    const [error,setError] = useState(false)
     useEffect(()=>{ 
         const config = {
             base:"https://restcountries.com/v3.1/",
@@ -33,44 +32,78 @@ const Search = ()=>{
         
         const BaseUrl =`${config.base}${config.region}${config.route}` 
 
-        useAPI(BaseUrl)
-//enviar os parametros/ BaseUrl para o useAPI e retornar os dados e passar para o home e nele passar para os demais. 
+        setLoad(true)
+        axios.get(BaseUrl)
+        .then((resp)=>{
+            setDados(resp.data)
+        })
+        .catch((error)=>{
+            console.log(error)
+            setError(true)
+        })
+        .finally(()=>{
+            setLoad(false)
+        })
+ 
     },[search])
 
+const ValidadeSearch= ()=>{
+    //retorna a lista de paises com tratamento de erro
+    if(load) return <p>Carregando...</p>
+    if(error)return <p>Algo não estar certo</p>
 
-    return(
-        <div>
-        <div
-        style={{
-            display:"flex",
-            justifyContent:"space-between"
-        }}
-        >
-             <input
-             type="search" 
-             placeholder={"Search for a country..."}
-             onChange={(e)=>setSearch(e.target.value)}
-             style={{
-                height:"38px",
-                width:"35vw",
-                border:"0.6px solid red ",
-                borderRadius:"4px",
-                margin:"6vh 60px",
-                padding:"0px 12px",
-                backgroundColor:"red"
+    if(dados.length){
+        return (//div container com todos os paises
+            <div
+            style={{
+                display:"flex",
+                padding:"0px 60px",
+                flexWrap:"wrap",
+                gap:"50px",
+                width:"95vw",
+                backgroundColor:""
+                
             }}
-            />
-            <select>
-                <option value="null">Filter by Region</option>
-                <option value="africa">Africa</option>
-                <option value="america">America</option>
-                <option value="asia">Asia</option>
-                <option value="europa">Europa</option>
-                <option value="oceania">Oceania</option>
-            </select>
-        </div>
-            <Home/>
-        </div>
-    )
+            > {dados.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))}
+            </div>
+        )
+    }
 }
+    return( //retorno real do componente Search
+        <div>
+         {//condiciona o show da barra de Search ao **dados** para não mostrar barra de buscar sem primeiro fazer o get
+            dados.length?<div
+            style={{
+                display:"flex",
+                justifyContent:"space-between"
+            }}
+            >
+                 <input type="search" placeholder="Search for a country..."  onChange={(e)=>setSearch(e.target.value)} style={{
+                    height:"38px",
+                    width:"35vw",
+                    border:"0.6px solid red ",
+                    borderRadius:"4px",
+                    margin:"6vh 60px",
+                    padding:"0px 12px",
+                    backgroundColor:"red"
+                }}
+                />
+                <select>
+                    <option value="null">Filter by Region</option>
+                    <option value="africa">Africa</option>
+                    <option value="america">America</option>
+                    <option value="asia">Asia</option>
+                    <option value="europa">Europa</option>
+                    <option value="oceania">Oceania</option>
+                </select>
+            </div>: null
+         }
+            
+        
+        
+        <div><ValidadeSearch/></div>
+        </div>
+        
+    )
+}//renderiza o ValidadeSearch já com as tratativas de erros**pode ser passado para outro componente como props para organizar tipo passa para baixo para um home ou main
 export default Search
