@@ -95,8 +95,9 @@ const ValidadeSearch= ()=>{
             dados.length?<div>
                  <input type="search" placeholder="Search for a country..."  onChange={(e)=>setSearch(e.target.value)}
                 />
-                <select>
-                    <option value="null">Filter by Region</option>
+                <select value="">
+                    <option value="" disabled>Filter by Region</option>
+                    <option disabled></option>
                     <option value="africa">Africa</option>
                     <option value="america">America</option>
                     <option value="asia">Asia</option>
