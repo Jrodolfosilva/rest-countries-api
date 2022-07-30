@@ -7,7 +7,7 @@ import {CardStyle} from "../styled"
     return(
     <CardStyle>
     <Link to={`/description/${dados.name.common}`}>
-        <img src={dados.flags.svg} 
+        <img src={dados.flags[0]} 
         alt={`Bandeira ${dados.name.common}`}></img>
         <h3>{dados.name.common}</h3>
         <p>Population: {dados.population}</p>

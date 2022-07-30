@@ -35,33 +35,23 @@ const Search = ()=>{
 
     
     useEffect(()=>{ 
-        const config = {
-            base:"https://restcountries.com/v3.1/",
-            route:"all",
-            region: ""
-        }
+         let config=""
         
 
-        if(search?.length > 1){
-            config.region = ""
-            config.route =`name/${search}`
-        } 
-        else if(region.length){
-            config.route = ""
-            config.region=`region/${region}`
-        } 
-        else if(search?.length && region.length){
-            config.region = ""
+         if(!search && !region ||search?.length <= 1 && !region){
+            config =`https://restcountries.com/v3/all?fields=name,capital,flags,population,region` 
         }
-        
-        const BaseUrl =`${config.base}${config.region}${config.route}` 
-
-
+        else if(search?.length > 1 ||!region){
+                config =`https://restcountries.com/v3/name/${search}?fields=name,capital,flags,population,region` 
+        }
+        else if(region){
+            config =`https://restcountries.com/v3/region/${region}?fields=name,capital,flags,population,region`
+        }
 
         Debounce(
         function clientAxios (){
         
-        axios.get(BaseUrl)
+        axios.get(config)
         .then((resp)=>{
             setDados(resp.data)
             setError(false)
@@ -102,6 +92,7 @@ const ValidadeSearch= ()=>{
                 />
                 <select value={region} onChange={(e)=>setRegion(e.target.value)}  id="regions" >
                     <option value="" disabled>Filter by Region</option>
+                    <option value="">All</option>
                     <option value="africa">Africa</option>
                     <option value="america">America</option>
                     <option value="asia">Asia</option>
