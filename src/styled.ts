@@ -6,6 +6,11 @@ background-color: black;
 color: white;
 padding: 3vh;
 
+a{
+    color: white;
+    text-decoration: none;
+}
+
 
 `
 //Caixa renderizar os paises

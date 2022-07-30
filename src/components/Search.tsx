@@ -4,9 +4,9 @@ import {ContainerRender,CardStyleSearch} from "../styled"
 import Card from "./Card";
 
 
+type search = string
 
 const Search = ()=>{
-    type search = string
     const [search,setSearch] = useState<search>()
     const [region,setRegion] = useState("")
     const [dados,setDados] = useState([])
@@ -19,12 +19,17 @@ const Search = ()=>{
 
     const Debounce = (func:any)=>{
      
-    clearTimeout(timeoutRef.current)
+    if(search?.length){
+        clearTimeout(timeoutRef.current)
     
     timeoutRef.current = setTimeout(()=>{
     return func()
     },1000)
-
+    }
+    else{
+        func()
+    }
+    
 }
 
 
@@ -37,7 +42,7 @@ const Search = ()=>{
         }
         
 
-        if(search?.length){
+        if(search?.length > 1){
             config.region = ""
             config.route =`name/${search}`
         } 
@@ -70,12 +75,11 @@ const Search = ()=>{
             setLoad(false)
         })
 
-
-
             }
         )
+
    
-    },[search])
+    },[search||region])
 
 const ValidadeSearch= ()=>{
     //retorna a lista de paises com tratamento de erro
@@ -85,7 +89,7 @@ const ValidadeSearch= ()=>{
     if(dados.length){
         return (//div container com todos os paises
             <ContainerRender>
-                 {dados.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))}
+                 {dados.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))} 
             </ContainerRender>
         )
     }
@@ -96,25 +100,13 @@ const ValidadeSearch= ()=>{
             dados.length?<div>
                  <input type="search" placeholder="Search for a country..."  onChange={(e)=>setSearch(e.target.value)}
                 />
-                <select value=""
-                
-                >
+                <select value={region} onChange={(e)=>setRegion(e.target.value)}  id="regions" >
                     <option value="" disabled>Filter by Region</option>
-                    <option disabled></option>
-                    <option value="africa"
-                    >Africa</option>
-                    <option value="america"
-                    
-                    >America</option>
-                    <option value="asia"
-                    
-                    >Asia</option>
-                    <option value="europa"
-                    
-                    >Europa</option>
-                    <option value="oceania"
-                    
-                    >Oceania</option>
+                    <option value="africa">Africa</option>
+                    <option value="america">America</option>
+                    <option value="asia">Asia</option>
+                    <option value="europe">Europa</option>
+                    <option value="oceania">Oceania</option>
                 </select>
             </div>: null
          }
