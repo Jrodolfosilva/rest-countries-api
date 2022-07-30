@@ -10,18 +10,20 @@ const Search = ()=>{
     const [search,setSearch] = useState<search>()
     const [region,setRegion] = useState("")
     const [dados,setDados] = useState([])
-    const [load,setLoad] = useState(false)
+    const [load,setLoad] = useState(true)
     const [error,setError] = useState(false)
     const timeoutRef = useRef(0)
 
 
-const Debounce = (func:any)=>{
 
+
+    const Debounce = (func:any)=>{
+     
     clearTimeout(timeoutRef.current)
     
     timeoutRef.current = setTimeout(()=>{
     return func()
-},1000)
+    },1000)
 
 }
 
@@ -53,7 +55,7 @@ const Debounce = (func:any)=>{
 
         Debounce(
         function clientAxios (){
-            setLoad(true)
+        
         axios.get(BaseUrl)
         .then((resp)=>{
             setDados(resp.data)
@@ -72,15 +74,13 @@ const Debounce = (func:any)=>{
 
             }
         )
-
-     
-        
+   
     },[search])
 
 const ValidadeSearch= ()=>{
     //retorna a lista de paises com tratamento de erro
     if(load) return <p>Carregando...</p>
-    if(error)return <p>Algo não estar certo</p>
+    if(error)return <p>OPS!! Algo deu errado...</p>
 
     if(dados.length){
         return (//div container com todos os paises
@@ -96,14 +96,25 @@ const ValidadeSearch= ()=>{
             dados.length?<div>
                  <input type="search" placeholder="Search for a country..."  onChange={(e)=>setSearch(e.target.value)}
                 />
-                <select value="">
+                <select value=""
+                
+                >
                     <option value="" disabled>Filter by Region</option>
                     <option disabled></option>
-                    <option value="africa">Africa</option>
-                    <option value="america">America</option>
-                    <option value="asia">Asia</option>
-                    <option value="europa">Europa</option>
-                    <option value="oceania">Oceania</option>
+                    <option value="africa"
+                    >Africa</option>
+                    <option value="america"
+                    
+                    >America</option>
+                    <option value="asia"
+                    
+                    >Asia</option>
+                    <option value="europa"
+                    
+                    >Europa</option>
+                    <option value="oceania"
+                    
+                    >Oceania</option>
                 </select>
             </div>: null
          }

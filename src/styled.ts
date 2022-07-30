@@ -24,11 +24,14 @@ width:250px ;
 height: 300px;
 border-radius: 8px;
 
+
 img{
+    object-fit: cover;
     width: 250px;
     height: 150px;
     border-radius: 4px 4px 0 0;
 }
+
 p{
         font-size: 13px;
 }
