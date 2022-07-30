@@ -1,6 +1,8 @@
-import React,{useState,useEffect} from "react";
-import Card from "./Card";
+import React,{useState,useEffect,useRef, FC, MutableRefObject} from "react";
 import axios from "axios";
+import {ContainerRender,CardStyleSearch} from "../styled"
+import Card from "./Card";
+
 
 
 const Search = ()=>{
@@ -10,6 +12,21 @@ const Search = ()=>{
     const [dados,setDados] = useState([])
     const [load,setLoad] = useState(false)
     const [error,setError] = useState(false)
+    const timeoutRef = useRef(0)
+
+
+const Debounce = (func:any)=>{
+
+    clearTimeout(timeoutRef.current)
+    
+    timeoutRef.current = setTimeout(()=>{
+    return func()
+},1000)
+
+}
+
+
+    
     useEffect(()=>{ 
         const config = {
             base:"https://restcountries.com/v3.1/",
@@ -32,19 +49,32 @@ const Search = ()=>{
         
         const BaseUrl =`${config.base}${config.region}${config.route}` 
 
-        setLoad(true)
+
+
+        Debounce(
+        function clientAxios (){
+            setLoad(true)
         axios.get(BaseUrl)
         .then((resp)=>{
             setDados(resp.data)
+            setError(false)
+            
         })
         .catch((error)=>{
             console.log(error)
-            setError(true)
+            setError(true)            
         })
         .finally(()=>{
             setLoad(false)
         })
- 
+
+
+
+            }
+        )
+
+     
+        
     },[search])
 
 const ValidadeSearch= ()=>{
@@ -54,42 +84,21 @@ const ValidadeSearch= ()=>{
 
     if(dados.length){
         return (//div container com todos os paises
-            <div
-            style={{
-                display:"flex",
-                padding:"0px 60px",
-                flexWrap:"wrap",
-                gap:"50px",
-                width:"95vw",
-                backgroundColor:""
-                
-            }}
-            > {dados.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))}
-            </div>
+            <ContainerRender>
+                 {dados.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))}
+            </ContainerRender>
         )
     }
 }
     return( //retorno real do componente Search
-        <div>
+        <CardStyleSearch>
          {//condiciona o show da barra de Search ao **dados** para não mostrar barra de buscar sem primeiro fazer o get
-            dados.length?<div
-            style={{
-                display:"flex",
-                justifyContent:"space-between"
-            }}
-            >
-                 <input type="search" placeholder="Search for a country..."  onChange={(e)=>setSearch(e.target.value)} style={{
-                    height:"38px",
-                    width:"35vw",
-                    border:"0.6px solid red ",
-                    borderRadius:"4px",
-                    margin:"6vh 60px",
-                    padding:"0px 12px",
-                    backgroundColor:"red"
-                }}
+            dados.length?<div>
+                 <input type="search" placeholder="Search for a country..."  onChange={(e)=>setSearch(e.target.value)}
                 />
-                <select>
-                    <option value="null">Filter by Region</option>
+                <select value="">
+                    <option value="" disabled>Filter by Region</option>
+                    <option disabled></option>
                     <option value="africa">Africa</option>
                     <option value="america">America</option>
                     <option value="asia">Asia</option>
@@ -98,11 +107,9 @@ const ValidadeSearch= ()=>{
                 </select>
             </div>: null
          }
-            
-        
         
         <div><ValidadeSearch/></div>
-        </div>
+        </CardStyleSearch>
         
     )
 }//renderiza o ValidadeSearch já com as tratativas de erros**pode ser passado para outro componente como props para organizar tipo passa para baixo para um home ou main

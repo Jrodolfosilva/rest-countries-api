@@ -1,18 +1,12 @@
 import React from "react";
-
+import { ContainerHeader} from "../styled"
 
 const Header = ()=>{
-    return <div
-    style={{
-        width:"100%",
-        padding:"0px 60px",
-        backgroundColor: "gray",
-        height:"8vh",
-        lineHeight:"8vh",
-    }}
-    >
-        <h2>Where in the world?</h2>
-    </div>
+    return(
+        <ContainerHeader>        
+            <h2>Where in the world?</h2>
+        </ContainerHeader> 
+    ) 
 }
 
 export default Header
