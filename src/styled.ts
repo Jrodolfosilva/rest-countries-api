@@ -11,21 +11,29 @@ padding: 3vh;
 //Caixa renderizar os paises
 export const ContainerRender =styled.ul`
     display: flex;
+    justify-content: space-between;
     align-items:center;
     flex-flow: row wrap;
-    gap:60px;
+    gap:50px;
 
 ` 
 //cards que estilizam os paises
 export const CardStyle = styled.div`
 background-color: #2222;
-width:270px ;
+width:250px ;
 height: 300px;
 border-radius: 8px;
 
 img{
-    width: 270px;
+    width: 250px;
     height: 150px;
+    border-radius: 4px 4px 0 0;
+}
+p{
+        font-size: 13px;
+}
+h3,p{
+    padding: 0px 12px;
 }
 
 `
