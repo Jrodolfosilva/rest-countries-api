@@ -1,29 +1,20 @@
 import React from "react";
 import {Link} from "react-router-dom"
+import {CardStyle} from "../styled"
 
 
  function Card({dados}:any){
     return(
-    <div style={{
-        backgroundColor:"white",
-        width:"270px",
-        height:"280px",
-        borderRadius:"4px"
-    }}
-    >
+    <CardStyle>
     <Link to={`/description/${dados.name.common}`}>
         <img src={dados.flags.png} 
-        alt={`Bandeira ${dados.name.common}`}
-        style={{
-            width:"270px",
-            height:"135px"
-            }}/>
+        alt={`Bandeira ${dados.name.common}`}></img>
         <h3>{dados.name.common}</h3>
         <p>Population: {dados.population}</p>
         <p>Region: {dados.region}</p>
         <p>Capital: {dados.capital}</p>
     </Link>
-    </div>
+    </CardStyle>
     )
 }
 export default Card
