@@ -57,6 +57,7 @@ const Debounce = (func:any)=>{
         axios.get(BaseUrl)
         .then((resp)=>{
             setDados(resp.data)
+            setError(false)
             
         })
         .catch((error)=>{
