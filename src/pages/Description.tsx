@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
+import axios from "axios";
 import {useParams} from "react-router-dom"
 import {ContainerDescription} from "../styled"
 
@@ -6,6 +7,9 @@ import {ContainerDescription} from "../styled"
 
 const Description= ()=>{
     const {region,name} = useParams()
+const [pais,setPais] = useState([]);
+
+
     
     return(
         <ContainerDescription>
