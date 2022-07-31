@@ -2,16 +2,13 @@ import styled from "styled-components"
 
 //header
 export const ContainerHeader = styled.div`
-background-color: black;
-color: white;
-padding: 3vh;
+padding: 2vh 60px;
+border-bottom:2px solid hsl(0, 0%, 93%) ;
 
 a{
     color: white;
     text-decoration: none;
 }
-
-
 `
 //Caixa renderizar os paises
 export const ContainerRender =styled.ul`
@@ -19,21 +16,26 @@ export const ContainerRender =styled.ul`
     justify-content: space-between;
     align-items:center;
     flex-flow: row wrap;
-    gap:50px;
+    gap:30px;
+    padding: 0 60px;
 
 ` 
 //cards que estilizam os paises
 export const CardStyle = styled.div`
-background-color: #2222;
 width:250px ;
-height: 300px;
+height: 240px;
 border-radius: 8px;
+border:4px solid hsl(0, 0%, 95%) ;
+cursor: pointer;
+transition: 0.1s;
 
-
+:hover{
+    transform: scale(1.05);
+}
 img{
     object-fit: cover;
-    width: 250px;
-    height: 150px;
+    width: 242px;
+    height: 130px;
     border-radius: 4px 4px 0 0;
 }
 
@@ -56,11 +58,23 @@ justify-content: space-between;
 input{
     height:38px;
     width:35vw;
-    border:0.6px solid red;
-    border-radius:4px;
+    border:2px solid hsl(0, 0%, 93%);
+    border-radius:6px;
     margin:6vh 60px;
     padding:0px 12px;
 }
+select{
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
+`
+export const ContainerDescription = styled.div`
+background-color: red;
+
+input{
+    margin: 60px;
+}
 
 `
