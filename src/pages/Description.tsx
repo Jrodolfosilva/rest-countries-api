@@ -1,16 +1,29 @@
 import React from "react";
 import {useParams} from "react-router-dom"
-
+import {ContainerDescription} from "../styled"
 
 //posso passar o ValidateSearch para a Home/App/Root renderizar e dela passar como element do Route ou procurá usar o useContext 
 
 const Description= ()=>{
-    const {name} = useParams()
+    const {region,name} = useParams()
     
     return(
-        <div>
-            <h1>O pais que vocẽ deseja mais detalhes é o: {name}</h1>
-        </div>
+        <ContainerDescription>
+            <input type="button" value="Back"/>
+            <div>
+                <img src={""} alt={"imagem"}/>
+                <div>
+                    <h1>{name}</h1>
+                    <div>
+                        <p>Native Name:<span>{name}</span></p>
+                        <p>Population:<span>{"1100000"}</span></p>
+                        <p>Region:<span>{region}</span></p>
+                        <p>Subregion:<span>{"regionsub"}</span></p>
+                        <p>Capital:<span>{name}</span></p>
+                    </div>
+                </div>
+            </div>
+        </ContainerDescription>
     )
 }
 

@@ -1,13 +1,12 @@
-import React,{useState,useEffect,useRef, FC, MutableRefObject} from "react";
+import React,{useState,useEffect,useRef} from "react";
 import axios from "axios";
 import {ContainerRender,CardStyleSearch} from "../styled"
 import Card from "./Card";
 
 
-type search = string
 
 const Search = ()=>{
-    const [search,setSearch] = useState<search>()
+    const [search,setSearch] = useState("")
     const [region,setRegion] = useState("")
     const [dados,setDados] = useState([])
     const [load,setLoad] = useState(true)
@@ -18,7 +17,7 @@ const Search = ()=>{
 
 
     const Debounce = (func:any)=>{
-     
+         
     if(search?.length){
         clearTimeout(timeoutRef.current)
     
@@ -31,23 +30,19 @@ const Search = ()=>{
     }
     
 }
-
-
     
     useEffect(()=>{ 
-         let config=""
-        
+         let config = "";
 
-         if(!search && !region ||search?.length <= 1 && !region){
-            config =`https://restcountries.com/v3/all?fields=name,capital,flags,population,region` 
-        }
-        else if(search?.length > 1 ||!region){
-                config =`https://restcountries.com/v3/name/${search}?fields=name,capital,flags,population,region` 
-        }
-        else if(region){
-            config =`https://restcountries.com/v3/region/${region}?fields=name,capital,flags,population,region`
-        }
+         if(!search.length || search.length <=1 && !region) config =`https://restcountries.com/v3/all?fields=name,capital,flags,population,region`;
 
+        //  if(search.length >1 && region.length) config =`https://restcountries.com/v3/region/${region}/${search}?fields=name,capital,flags,population,region`;
+         
+         if(search.length >1 && region.length ||search.length >1 && !region.length )config =`https://restcountries.com/v3/name/${search}?fields=name,capital,flags,population,region`
+         
+         if(region.length && !search.length)config =`https://restcountries.com/v3/region/${region}?fields=name,capital,flags,population,region`
+
+         console.log(config)
         Debounce(
         function clientAxios (){
         
@@ -88,7 +83,7 @@ const ValidadeSearch= ()=>{
         <CardStyleSearch>
          {//condiciona o show da barra de Search ao **dados** para não mostrar barra de buscar sem primeiro fazer o get
             dados.length?<div>
-                 <input type="search" placeholder="Search for a country..."  onChange={(e)=>setSearch(e.target.value)}
+                 <input type="search" placeholder={`${"LUPA   | "}Search for a country...`}  onChange={(e)=>setSearch(e.target.value)}
                 />
                 <select value={region} onChange={(e)=>setRegion(e.target.value)}  id="regions" >
                     <option value="" disabled>Filter by Region</option>
