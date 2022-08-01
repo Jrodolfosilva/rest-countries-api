@@ -71,10 +71,12 @@ select{
 
 `
 export const ContainerDescription = styled.div`
-background-color: red;
 
-input{
-    margin: 60px;
-}
+
+`
+export const CardStyleInfoPais = styled.div`
+width: 50vw;
+height: 60vh;
+background-color: red;
 
 `

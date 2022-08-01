@@ -6,7 +6,7 @@ import {CardStyle} from "../styled"
  function Card({dados}:any){
     return(
     <CardStyle>
-    <Link to={`/description/${dados.region}/${dados.name.common}`}>
+    <Link to={`/description/${dados.name.common}`}>
         <img src={dados.flags[0]} 
         alt={`Bandeira ${dados.name.common}`}></img>
         <h3>{dados.name.common}</h3>
