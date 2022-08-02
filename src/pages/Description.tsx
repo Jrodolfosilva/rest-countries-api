@@ -2,33 +2,55 @@ import React,{useEffect,useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom"
 import {ContainerDescription} from "../styled"
+import CardPais from "../components/CardPais";
 
-//posso passar o ValidateSearch para a Home/App/Root renderizar e dela passar como element do Route ou procurá usar o useContext 
 
 const Description= ()=>{
-    const {region,name} = useParams()
-const [pais,setPais] = useState([]);
+    const [dados,setDados] = useState([]);
+    const [borders,setBorders] = useState("")
+    const {name} = useParams()
+
+    useEffect(()=>{
+        axios.get(`https://restcountries.com/v3/name/${name}?fields=name,capital,flags,population,region,subregion,currency,lang,borders,tld`)
+        .then((resp)=>{
+        setDados(resp.data)
+    })
+    .catch((error)=>{
+        console.log(error)           
+    })
+    .finally(()=>{
+    })
+},[])
+
+//segundo get depois que tivermos dados do pais principal
+useEffect(()=>{
+    axios.get(`https://restcountries.com/v2/alpha?codes=${"arg"}`)
+    .then((resp)=>setBorders(resp.data))
+},[dados])
+let pais ="" 
+dados.map((obj)=>pais=obj)
 
 
-    
     return(
         <ContainerDescription>
-            <input type="button" value="Back"/>
-            <div>
-                <img src={""} alt={"imagem"}/>
+            <input type="button" value="BACK"/>
+            {
+                pais?
+                <section>
                 <div>
-                    <h1>{name}</h1>
-                    <div>
-                        <p>Native Name:<span>{name}</span></p>
-                        <p>Population:<span>{"1100000"}</span></p>
-                        <p>Region:<span>{region}</span></p>
-                        <p>Subregion:<span>{"regionsub"}</span></p>
-                        <p>Capital:<span>{name}</span></p>
-                    </div>
+                    <img src={pais.flags[0]} alt={`Bandeira-${pais.tld}`}/>
                 </div>
-            </div>
+            </section>:<>carregando....</>
+            }
+                            
         </ContainerDescription>
     )
 }
 
 export default Description
+
+
+
+
+//exemplo para filtrar os border por code: BR< PR
+///https://restcountries.com/v2/alpha?codes=fra,deu

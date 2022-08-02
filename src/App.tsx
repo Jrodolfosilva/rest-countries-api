@@ -6,16 +6,16 @@ import Search from "./components/Search"
 
 function App() {
   return (
-  <BrowserRouter>
-    <div className="App">
-     <Header/>
+     <BrowserRouter>
+        <div className="App">
+          <Header/>
 
-  <Routes>
-  <Route path="/" element={<Search/>}/>
-      <Route path="/description/:region/:name" element={<Description/>}/>
-  </Routes>
+      <Routes>
+        <Route path="/" element={<Search/>}/>
+        <Route path="/description/:name" element={<Description/>}/>
+      </Routes>
       
-    </div>
+        </div>
     </BrowserRouter>
   )
 }

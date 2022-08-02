@@ -13,10 +13,9 @@ a{
 //Caixa renderizar os paises
 export const ContainerRender =styled.ul`
     display: flex;
-    justify-content: space-between;
     align-items:center;
     flex-flow: row wrap;
-    gap:30px;
+    gap:5.6vw;
     padding: 0 60px;
 
 ` 
@@ -27,11 +26,13 @@ height: 240px;
 border-radius: 8px;
 border:4px solid hsl(0, 0%, 95%) ;
 cursor: pointer;
-transition: 0.1s;
+transition: 0.3s;
+
 
 :hover{
     transform: scale(1.05);
 }
+
 img{
     object-fit: cover;
     width: 242px;
@@ -71,10 +72,12 @@ select{
 
 `
 export const ContainerDescription = styled.div`
-background-color: red;
 
-input{
-    margin: 60px;
-}
+
+`
+export const CardStyleInfoPais = styled.div`
+width: 50vw;
+height: 60vh;
+background-color: red;
 
 `
