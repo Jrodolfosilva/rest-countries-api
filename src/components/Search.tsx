@@ -1,80 +1,68 @@
-import React,{useState,useEffect,useRef} from "react";
+import React,{useState,useEffect} from "react";
 import axios from "axios";
 import {ContainerRender,CardStyleSearch} from "../styled"
 import Card from "./Card";
 
-
+interface Pais {
+    name:{
+        common:String
+    },
+    capital:String,
+    flags: Object,
+    region:String,
+    population:String
+}
 
 const Search = ()=>{
-    const [search,setSearch] = useState("")
+    const [dados,setDados] = useState<Pais[]>([])
+    const [search,setSearch] = useState<String>("")
     const [region,setRegion] = useState("")
-    const [dados,setDados] = useState([])
-    const [load,setLoad] = useState(true)
-    const [error,setError] = useState(false)
-    const timeoutRef = useRef(0)
+    let error:Boolean =  false
+    let load:Boolean =  false
 
-
-
-
-    const Debounce = (func:any)=>{
-         
-    if(search?.length){
-        clearTimeout(timeoutRef.current)
-    
-    timeoutRef.current = setTimeout(()=>{
-    return func()
-    },1000)
-    }
-    else{
-        func()
-    }
-    
-}
     
     useEffect(()=>{ 
-         let config = "";
-
-         if(!search.length || search.length <=1 && !region) config =`https://restcountries.com/v3/all?fields=name,capital,flags,population,region`;
-
-        //  if(search.length >1 && region.length) config =`https://restcountries.com/v3/region/${region}/${search}?fields=name,capital,flags,population,region`;
-         
-         if(search.length >1 && region.length ||search.length >1 && !region.length )config =`https://restcountries.com/v3/name/${search}?fields=name,capital,flags,population,region`
-         
-         if(region.length && !search.length)config =`https://restcountries.com/v3/region/${region}?fields=name,capital,flags,population,region`
-
-         console.log(config)
-        Debounce(
-        function clientAxios (){
-        
-        axios.get(config)
+         const url = `https://restcountries.com/v3/all?fields=name,capital,flags,population,region`    
+        axios.get(url)
         .then((resp)=>{
             setDados(resp.data)
-            setError(false)
-            
         })
         .catch((error)=>{
             console.log(error)
-            setError(true)            
+            error=true            
         })
         .finally(()=>{
-            setLoad(false)
+      })
+
+    },[])
+
+    let response = dados.sort(function(a,b):any{
+        if(a.name.common < b.name.common){
+            return -1
+        }
+        else{
+           return true
+        }
         })
 
-            }
-        )
+        if(search.length >1 || search.length >1 && region){
+            response= dados.filter((pais)=>pais.name.common.toLowerCase().includes(search.toLowerCase()))
+        }
+        if(region && !search){
 
-   
-    },[search||region])
+            response= dados.filter((pais)=>pais.region.toLowerCase().includes(region.toLowerCase()))
+        }
 
 const ValidadeSearch= ()=>{
     //retorna a lista de paises com tratamento de erro
     if(load) return <p>Carregando...</p>
     if(error)return <p>OPS!! Algo deu errado...</p>
 
-    if(dados.length){
+    if(response.length){
+        
         return (//div container com todos os paises
             <ContainerRender>
-                 {dados.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))} 
+                 {response.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))} 
             </ContainerRender>
         )
     }
@@ -98,8 +86,10 @@ const ValidadeSearch= ()=>{
          }
         
         <div><ValidadeSearch/></div>
+        
         </CardStyleSearch>
         
     )
 }//renderiza o ValidadeSearch já com as tratativas de erros**pode ser passado para outro componente como props para organizar tipo passa para baixo para um home ou main
 export default Search
+

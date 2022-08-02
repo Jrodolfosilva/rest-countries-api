@@ -40,7 +40,6 @@ dados.map((obj)=>pais=obj)
                 <div>
                     <img src={pais.flags[0]} alt={`Bandeira-${pais.tld}`}/>
                 </div>
-                <CardPais pais={pais}/>
             </section>:<>carregando....</>
             }
                             
