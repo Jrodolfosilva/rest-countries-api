@@ -1,56 +1,49 @@
-import React,{useEffect,useState} from "react";
+import React,{useState,useEffect} from "react";
 import axios from "axios";
-import {useParams} from "react-router-dom"
-import {ContainerDescription} from "../styled"
+import { useParams,Link } from "react-router-dom";
 import CardPais from "../components/CardPais";
-
-
-const Description= ()=>{
-    const [dados,setDados] = useState([]);
-    const [borders,setBorders] = useState("")
+const Description = ()=>{
+    const [dados,setDados]= useState([])
+    const [error,setError]= useState(false)
     const {name} = useParams()
-
-    useEffect(()=>{
-        axios.get(`https://restcountries.com/v3/name/${name}?fields=name,capital,flags,population,region,subregion,currency,lang,borders,tld`)
-        .then((resp)=>{
-        setDados(resp.data)
-    })
-    .catch((error)=>{
-        console.log(error)           
-    })
-    .finally(()=>{
-    })
-},[])
-
-//segundo get depois que tivermos dados do pais principal
 useEffect(()=>{
-    axios.get(`https://restcountries.com/v2/alpha?codes=${"arg"}`)
-    .then((resp)=>setBorders(resp.data))
-},[dados])
-let pais ="" 
-dados.map((obj)=>pais=obj)
+    axios.get(`https://restcountries.com/v3/all?fields=name,capital,flags,population,region,subregion,currency,lang,borders,tld`)
+    .then((resp)=>setDados(resp.data))
+    .catch(()=>setError(true))
+    
+},[])
+let borders = []
+let fronteira =  dados.filter((pais)=>pais)//
+let response = dados.filter((pais)=>pais?.name.common.toLowerCase().includes(name?.toLowerCase()))
+console.log(response)
 
-
+const RenderPais= ()=>{
     return(
-        <ContainerDescription>
-            <input type="button" value="BACK"/>
-            {
-                pais?
-                <section>
-                <div>
-                    <img src={pais.flags[0]} alt={`Bandeira-${pais.tld}`}/>
-                </div>
-            </section>:<>carregando....</>
-            }
-                            
-        </ContainerDescription>
+        <>
+        {!response.length && !error?<p>Carregando...</p>:null}
+        {response.length ?
+            response.map((res)=>(<CardPais key={res.name.common} dados={res}/>)):[]
+        }   
+        {error?<>Error</>:[]}    
+        </>
     )
 }
 
+
+
+    return(
+        <div style={{display:"flex",alignItems:"center"}}>
+
+            <RenderPais/>
+            <ul>
+            <Link to="/description/argentina">
+            <li>Argentina</li>
+            </Link>
+            <Link to="/description/brazil">
+            <li>BRASIL</li>
+            </Link>
+            </ul>
+        </div>
+    ) 
+}
 export default Description
-
-
-
-
-//exemplo para filtrar os border por code: BR< PR
-///https://restcountries.com/v2/alpha?codes=fra,deu

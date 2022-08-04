@@ -76,8 +76,11 @@ export const ContainerDescription = styled.div`
 
 `
 export const CardStyleInfoPais = styled.div`
-width: 50vw;
-height: 60vh;
-background-color: red;
+display: flex;
+flex-flow: row wrap;
+margin: 60px;
+align-items: center;
+justify-content: space-between;
+
 
 `
