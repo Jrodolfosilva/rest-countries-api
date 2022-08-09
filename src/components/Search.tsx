@@ -15,28 +15,25 @@ interface Pais {
 
 const Search = ()=>{
     const [dados,setDados] = useState<Pais[]>([])
-    const [search,setSearch] = useState<String>("")
+    const [search,setSearch] = useState("")
     const [region,setRegion] = useState("")
-    let error:Boolean =  false
-    let load:Boolean =  false
+    const [error,setError] = useState(false)    
 
     
-    useEffect(()=>{ 
-         const url = `https://restcountries.com/v3/all?fields=name,capital,flags,population,region`    
+    useEffect(()=>{
+        
+        const url = `https://restcountries.com/v3/all?fields=name,capital,flags,population,region`    
         axios.get(url)
         .then((resp)=>{
             setDados(resp.data)
         })
-        .catch((error)=>{
-            console.log(error)
-            error=true            
+        .catch(()=>{     
+            setError(true)      
         })
-        .finally(()=>{
-      })
 
     },[])
 
-    let response = dados.sort(function(a,b):any{
+        let response = dados.sort(function(a,b):any{
         if(a.name.common < b.name.common){
             return -1
         }
@@ -51,25 +48,23 @@ const Search = ()=>{
         if(region && !search){
 
             response= dados.filter((pais)=>pais.region.toLowerCase().includes(region.toLowerCase()))
+            
         }
-
-const ValidadeSearch= ()=>{
-    //retorna a lista de paises com tratamento de erro
-    if(load) return <p>Carregando...</p>
-    if(error)return <p>OPS!! Algo deu errado...</p>
-
-    if(response.length){
-        
-        return (//div container com todos os paises
+const RenderSearch= ()=>{
+    return(
+        <>
+        {!dados.length && !error?<p>Carregando...</p>:null}
+        {response.length ?
             <ContainerRender>
-                 {response.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))} 
-            </ContainerRender>
-        )
-    }
+                {response.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))} 
+            </ContainerRender>:[]}
+        {error?<>Error</>:[]}    
+        </>
+    )
 }
     return( //retorno real do componente Search
         <CardStyleSearch>
-         {//condiciona o show da barra de Search ao **dados** para não mostrar barra de buscar sem primeiro fazer o get
+         {
             dados.length?<div>
                  <input type="search" placeholder={`${"LUPA   | "}Search for a country...`}  onChange={(e)=>setSearch(e.target.value)}
                 />
@@ -85,11 +80,11 @@ const ValidadeSearch= ()=>{
             </div>: null
          }
         
-        <div><ValidadeSearch/></div>
+        <div><RenderSearch/></div>
         
         </CardStyleSearch>
         
     )
-}//renderiza o ValidadeSearch já com as tratativas de erros**pode ser passado para outro componente como props para organizar tipo passa para baixo para um home ou main
+}
 export default Search
 
