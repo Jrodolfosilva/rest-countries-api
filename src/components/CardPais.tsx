@@ -21,15 +21,16 @@ interface Dados {
         <img src={dados.flags[0]} 
         alt={`Bandeira ${dados.name.common}`}></img>
         <div> 
+
             <h2>{dados.name.common}</h2>
             <p>Native name: <span>{dados.name.common}</span></p>
-            <p>Population: <span>{dados.name.common}</span></p>
-            <p>Region: <span>{dados.name.common}</span></p>
-            <p>Sub Region: <span>{dados.name.common}</span></p>
-            <p>Capital: <span>{dados.name.common}</span></p>
-            <p>Top Level Domain: <span>{dados.name.common}</span></p>
-            <p>Currencies: <span>{dados.name.common}</span></p>
-            <p>Languages: <span>{dados.name.common}</span></p>
+            <p>Population: <span>{dados.population}</span></p>
+            <p>Region: <span>{dados.region}</span></p>
+            <p>Sub Region: <span>{dados.subregion}</span></p>
+            <p>Capital: <span>{dados.capital}</span></p>
+            <p>Top Level Domain: <span>{dados.tld}</span></p>
+            <p>Currencies: <span>{dados.currency}</span></p>
+            <p>Languages: <span>{dados.languages}</span></p>
         </div>
         
         
