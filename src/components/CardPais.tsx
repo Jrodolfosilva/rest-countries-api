@@ -14,23 +14,24 @@ interface Dados {
     languages:String,
 }
 
- function CardPais ({dados,borders}:any){
+ function CardPais ({dados}:any){
+    const {name,nativeName,population,region,subregion,capital,tld, currency,languages} = dados
     return(
     <CardStyleInfoPais>
 
         <img src={dados.flags[0]} 
-        alt={`Bandeira ${dados.name.common}`}></img>
+        alt={`Bandeira ${name}`}></img>
         <div> 
 
             <h2>{dados.name.common}</h2>
-            <p>Native name: <span>{dados.name.common}</span></p>
-            <p>Population: <span>{dados.population}</span></p>
-            <p>Region: <span>{dados.region}</span></p>
-            <p>Sub Region: <span>{dados.subregion}</span></p>
-            <p>Capital: <span>{dados.capital}</span></p>
-            <p>Top Level Domain: <span>{dados.tld}</span></p>
-            <p>Currencies: <span>{dados.currency}</span></p>
-            <p>Languages: <span>{dados.languages}</span></p>
+            <p>Native name: <span>{nativeName}</span></p>
+            <p>Population: <span>{population}</span></p>
+            <p>Region: <span>{region}</span></p>
+            <p>Sub Region: <span>{subregion}</span></p>
+            <p>Capital: <span>{capital}</span></p>
+            <p>Top Level Domain: <span>{""}</span></p>
+            <p>Currencies: <span>{""}</span></p>
+            <p>Languages: <span>{languages[0]}</span></p>
         </div>
         
         

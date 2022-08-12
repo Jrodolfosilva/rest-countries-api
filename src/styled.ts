@@ -72,9 +72,7 @@ select{
 
 `
 export const ContainerDescription = styled.div`
- display: flex;
- align-items: center;
- background-color: red;
+ background-color: #2222;
 
 
 `
@@ -84,9 +82,9 @@ flex-flow: row wrap;
 margin: 60px;
 align-items: center;
 justify-content: space-between;
-min-height: 400px;
+
     img{
-        width: 60%;
+        width: 600px;
     }
     
 

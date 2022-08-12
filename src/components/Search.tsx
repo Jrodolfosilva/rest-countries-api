@@ -22,7 +22,7 @@ const Search = ()=>{
     
     useEffect(()=>{
         
-        const url = `https://restcountries.com/v3/all?fields=name,capital,flags,population,region`    
+        const url = `https://restcountries.com/v2/all?fields=name,nativeName,capital,flags,population,region`    
         axios.get(url)
         .then((resp)=>{
             setDados(resp.data)
@@ -56,7 +56,7 @@ const RenderSearch= ()=>{
         {!dados.length && !error?<p>Carregando...</p>:null}
         {response.length ?
             <ContainerRender>
-                {response.map((resp)=>(<Card key={resp.name.common} dados={resp}/>))} 
+                {response.map((resp)=>(<Card key={resp.name} dados={resp}/>))} 
             </ContainerRender>:[]}
         {error?<>Error</>:[]}    
         </>

@@ -13,13 +13,13 @@ const Description = ()=>{
     const [error,setError]= useState(false)
     const {name} = useParams()
 useEffect(()=>{
-    axios.get(`https://restcountries.com/v3/all?fields=name,capital,flags,population,region,subregion,currency,languages,borders,tld`)
+    axios.get(`https://restcountries.com/v2/all?fields=name,nativeName,capital,flags,population,region,subregion,currencies,languages,borders,topLevelDomain`)
     .then((resp)=>setDados(resp.data))
     .catch(()=>setError(true))
     
 },[])
 
-const response = dados.filter((pais)=>pais?.name.common.toLowerCase().includes(name?.toLowerCase()))
+const response = dados.filter((pais)=>pais?.name.toLowerCase().includes(name?.toLowerCase()))
 
 
 
@@ -28,7 +28,7 @@ const RenderPais= ()=>{
         <>
         {!response.length && !error?<p>Carregando...</p>:null}
         {response.length ?
-            response.map((res)=>(<CardPais key={res.name.common}  dados={res}/>)):[]
+            response.map((res)=>(<CardPais key={res.name}  dados={res}/>)):[]
         }   
         {error?<>Error</>:[]}    
         </>
