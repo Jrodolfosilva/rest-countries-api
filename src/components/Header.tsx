@@ -1,14 +1,21 @@
 import React from "react";
-import { ContainerHeader} from "../styled"
 import { Link } from "react-router-dom";
-const Header = ()=>{
+import { Header} from "../styled"
+import moom from "../img/moon.png"
+
+
+const ComponentHeader = ()=>{
     return(
-        <ContainerHeader>        
+        <Header>        
         <Link to="/">
             <h2>Where in the world?</h2>
         </Link>
-        </ContainerHeader> 
+        <div>
+        <img src={moom} alt="troca"/>
+        <span>Dark Mode</span>
+        </div>
+        </Header> 
     ) 
 }
 
-export default Header
+export default ComponentHeader

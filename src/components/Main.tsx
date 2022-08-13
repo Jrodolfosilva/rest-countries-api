@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
-import {ContainerRender,CardStyleSearch} from "../styled"
 import Card from "./Card";
+import {Search,ContainerMain } from "../styled"
 
 interface Pais {
     name:{
@@ -13,7 +13,7 @@ interface Pais {
     population:String
 }
 
-const Search = ()=>{
+const Main = ()=>{
     const [dados,setDados] = useState<Pais[]>([])
     const [search,setSearch] = useState("")
     const [region,setRegion] = useState("")
@@ -55,36 +55,40 @@ const RenderSearch= ()=>{
         <>
         {!dados.length && !error?<p>Carregando...</p>:null}
         {response.length ?
-            <ContainerRender>
+            <ContainerMain>
                 {response.map((resp)=>(<Card key={resp.name} dados={resp}/>))} 
-            </ContainerRender>:[]}
+            </ContainerMain>:[]}
         {error?<>Error</>:[]}    
         </>
     )
 }
     return( //retorno real do componente Search
-        <CardStyleSearch>
+        <div>
          {
-            dados.length?<div>
-                 <input type="search" placeholder={`${"LUPA   | "}Search for a country...`}  onChange={(e)=>setSearch(e.target.value)}
+            dados.length?
+            <Search>
+                 <input type="search" placeholder="Search for a country..."  onChange={(e)=>setSearch(e.target.value)}               
                 />
+                {region && search?<>Filtro desativado..::teste::..</>:[]}
                 <select value={region} onChange={(e)=>setRegion(e.target.value)}  id="regions" >
                     <option value="" disabled>Filter by Region</option>
-                    <option value="">All</option>
+                    {/* <option value="">All</option> */}
                     <option value="africa">Africa</option>
                     <option value="america">America</option>
                     <option value="asia">Asia</option>
                     <option value="europe">Europa</option>
                     <option value="oceania">Oceania</option>
                 </select>
-            </div>: null
+            </Search>: null
          }
         
-        <div><RenderSearch/></div>
+        <div>
+            <RenderSearch/>
+        </div>
         
-        </CardStyleSearch>
+        </div>
         
     )
 }
-export default Search
+export default Main
 
