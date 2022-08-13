@@ -1,91 +1,128 @@
 import styled from "styled-components"
-
+import lupa from "./img/lupa.png"
 //header
-export const ContainerHeader = styled.div`
-padding: 2vh 60px;
-border-bottom:2px solid hsl(0, 0%, 93%) ;
 
-a{
-    color: white;
-    text-decoration: none;
-}
-`
-//Caixa renderizar os paises
-export const ContainerRender =styled.ul`
-    display: flex;
-    align-items:center;
-    flex-flow: row wrap;
-    gap:5.6vw;
-    padding: 0 60px;
+export const Header = styled.div`
 
-` 
-//cards que estilizam os paises
-export const CardStyle = styled.div`
-width:250px ;
-height: 240px;
-border-radius: 8px;
-border:4px solid hsl(0, 0%, 95%) ;
-cursor: pointer;
-transition: 0.3s;
-
-
-:hover{
-    transform: scale(1.05);
-}
-
-img{
-    object-fit: cover;
-    width: 242px;
-    height: 130px;
-    border-radius: 4px 4px 0 0;
-}
-
-p{
-        font-size: 13px;
-}
-h3,p{
-    padding: 0px 12px;
-}
-
-`
-
-//card do search
-
-export const CardStyleSearch = styled.div`
 display: flex;
-flex-direction: column;
 justify-content: space-between;
-
-input{
-    height:38px;
-    width:35vw;
-    border:2px solid hsl(0, 0%, 93%);
-    border-radius:6px;
-    margin:6vh 60px;
-    padding:0px 12px;
-}
-select{
-    height: 30px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-`
-export const ContainerDescription = styled.div`
- background-color: #2222;
-
-
-`
-export const CardStyleInfoPais = styled.div`
-display: flex;
-flex-flow: row wrap;
-margin: 60px;
 align-items: center;
-justify-content: space-between;
-
-    img{
-        width: 600px;
+height: 8vh;
+line-height: 8vh;
+padding: 0 60px;
+border-bottom:4px solid hsl(0, 0%, 95%) ;
+    div{
+        display: flex;
+        align-items: center;
+        gap:2px;
+        font-weight: 700;
+        cursor: pointer;
+        img{
+            width: 20px;
+            height: 20px;
+            }
     }
     
+@media(max-width: 375px) {
+    padding: 0px 12px;
+    text-align: left;
+    font-size: 8px;
+
+}
+
+`
+export const Search = styled.div`
+
+    display: flex;
+    justify-content: space-between;
+    padding: 0 60px;
+    margin-top:10px;
+        input {
+            /* border:4px solid hsl(0, 0%, 95%) ; */
+            box-shadow: 2px  2px hsl(0, 0%, 95%), -2px -2px hsl(0, 0%, 95%) ;
+            border: none;
+            width: 350px;
+            padding:10px 30px;
+            border-radius: 2px;
+            position: relative;
+            
+        }
+        select{
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 2px;
+            /* border:4px solid hsl(0, 0%, 95%) ; */
+            border: none;
+            background-color: #ffff;
+            box-shadow: 2px  2px hsl(0, 0%, 95%), -2px -2px hsl(0, 0%, 95%) ;
+            cursor: pointer;
+
+                option{
+                    font-weight: 700;
+                }
+        }
+        @media(max-width: 375px) {
+            flex-direction: column;
+            padding: 0px;
+            gap:20px;
+                input{
+                    margin: 0 auto;    
+                    width: 90vw;
+                    font-size: 4vw;
+                }
+                select{
+                    width: 40vw;
+                    height:36px;
+                    margin-left: 5vw;
+                }
+        }
+
+
+`
+
+export const CardMain = styled.li`
+display: block;
+width:250px ;
+height: 270px;
+border-radius: 8px;
+/* border:4px solid hsl(0, 0%, 95%) ; */
+box-shadow: 4px  4px hsl(0, 0%, 95%), -4px -4px hsl(0, 0%, 95%) ;
+margin-top: 45px;
+cursor: pointer;
+transition: 0.3s;
+    :hover{
+        transform: scale(1.05);
+    }
+    img{
+        object-fit: cover;
+        width: 250px;
+        height: 140px;
+        border-radius: 4px 4px 0 0;
+    }
+    p{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    span{
+        font-weight: 500;
+    }
+    h3,p{
+    padding: 0px 12px;
+    }
+
+`
+export const ContainerMain = styled.ul`
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+margin: 10px 60px;
+@media(max-width: 375px) {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    gap: 30px;
+            
+}
 
 `

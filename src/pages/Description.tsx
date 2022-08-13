@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
-import { useParams,Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CardPais from "../components/CardPais";
-import {ContainerDescription} from "../styled"
+
 
 
 
@@ -39,10 +39,10 @@ const RenderPais= ()=>{
 // console.log(fronteiras)
 
     return(
-        <ContainerDescription>
+        <div>
 
         <RenderPais/>
-        </ContainerDescription>
+        </div>
     ) 
 }
 export default Description

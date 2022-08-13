@@ -5,7 +5,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: hsl(0, 0%, 98%);
     color:  hsl(200, 15%, 8%);
     text-decoration: none;
     font-family: 'Nunito Sans', sans-serif;
@@ -13,7 +12,10 @@
 html{
     font-size: 14px;
 }
+body{
+    background-color: hsl(0, 0%, 98%); 
 
+}
 
 /*- Cinza escuro (entrada no modo claro): hsl(0, 0%, 52%)
 - Cinza muito claro (fundo do modo claro): hsl(0, 0%, 98%)

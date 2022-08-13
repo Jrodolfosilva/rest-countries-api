@@ -1,19 +1,19 @@
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Description from "./pages/Description"
-import Header from "./components/Header"
-import Search from "./components/Search"
+import ComponentHeader from "./components/Header"
+import ComponentMain from "./components/Main"
 
 
 function App() {
   return (
      <BrowserRouter>
         <div className="App">
-          <Header/>
+          <ComponentHeader/>
 
       <Routes>
-        <Route path="/" element={<Search/>}/>
+        <Route path="/" element={<ComponentMain/>}/>
          <Route path="/description/:name" element={<Description/>}/> 
-              </Routes>
+      </Routes>
       
         </div>
     </BrowserRouter>

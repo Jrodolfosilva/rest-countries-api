@@ -1,6 +1,5 @@
-//import {Link} from "react-router-dom"
-import { Link } from "react-router-dom"
-import {CardStyleInfoPais} from "../styled"
+import {Link} from "react-router-dom"
+
 
 
 
@@ -9,7 +8,7 @@ import {CardStyleInfoPais} from "../styled"
     const {name,topLevelDomain,capital,subregion,region,population,borders,nativeName,flags,currencies,languages} = dados    
     
     return(
-    <CardStyleInfoPais>
+    <div>
         <img src={flags.svg} 
         alt={`Bandeira ${name}`}></img>
 
@@ -32,7 +31,7 @@ import {CardStyleInfoPais} from "../styled"
         }
         </div>
  
-    </CardStyleInfoPais>
+    </div>
     )
 }
 export default CardPais 
