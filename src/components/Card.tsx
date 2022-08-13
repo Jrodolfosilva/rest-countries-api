@@ -4,15 +4,16 @@ import {CardStyle} from "../styled"
 
 
  function Card({dados}:any){
+    const {name,capital,flags,population,region}= dados
     return(
     <CardStyle>
-    <Link to={`/description/${dados.name.common}`}>
-        <img src={dados.flags[0]} 
-        alt={`Bandeira ${dados.name.common}`}></img>
-        <h3>{dados.name.common}</h3>
-        <p>Population: {dados.population}</p>
-        <p>Region: {dados.region}</p>
-        <p>Capital: {dados.capital}</p>
+    <Link to={`/description/${name}`}>
+        <img src={flags.svg} 
+        alt={`Bandeira ${name}`}></img>
+        <h3>{name}</h3>
+        <p>Population: {population}</p>
+        <p>Region: {region}</p>
+        <p>Capital: {capital}</p>
     </Link>
     </CardStyle>
     )

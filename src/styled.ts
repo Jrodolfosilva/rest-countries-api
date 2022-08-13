@@ -72,6 +72,7 @@ select{
 
 `
 export const ContainerDescription = styled.div`
+ background-color: #2222;
 
 
 `
@@ -82,5 +83,9 @@ margin: 60px;
 align-items: center;
 justify-content: space-between;
 
+    img{
+        width: 600px;
+    }
+    
 
 `
