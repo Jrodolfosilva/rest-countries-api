@@ -13,7 +13,7 @@ const Description = ()=>{
     const [error,setError]= useState(false)
     const {name} = useParams()
 useEffect(()=>{
-    axios.get(`https://restcountries.com/v2/all?fields=name,nativeName,capital,flags,population,region,subregion,currencies,languages,borders,topLevelDomain`)
+    axios.get("https://restcountries.com/v2/all?fields=name,nativeName,capital,flags,population,region,subregion,currencies,languages,topLevelDomain,borders")
     .then((resp)=>setDados(resp.data))
     .catch(()=>setError(true))
     
@@ -24,6 +24,7 @@ const response = dados.filter((pais)=>pais?.name.toLowerCase().includes(name?.to
 
 
 const RenderPais= ()=>{
+    console.log(response)
     return(
         <>
         {!response.length && !error?<p>Carregando...</p>:null}

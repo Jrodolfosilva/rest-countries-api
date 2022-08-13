@@ -42,8 +42,8 @@ const Search = ()=>{
         }
         })
 
-        if(search.length >1 || search.length >1 && region){
-            response= dados.filter((pais)=>pais.name.common.toLowerCase().includes(search.toLowerCase()))
+        if(search.length  || search.length  && region){
+            response= dados.filter((pais)=>pais.name.toLowerCase().includes(search.toLowerCase()))
         }
         if(region && !search){
 

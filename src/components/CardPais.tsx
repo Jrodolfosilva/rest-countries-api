@@ -1,26 +1,18 @@
-import {Link} from "react-router-dom"
+//import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import {CardStyleInfoPais} from "../styled"
-interface Dados {
-    name:{
-        common:String,
-        nativeName:String
-    },
-    population:String,
-    region:String,
-    subregion:String,
-    capital:String,
-    tld:String,
-    currencies: String,
-    languages:String,
-}
+
+
 
  function CardPais ({dados}:any){
-    const {name,nativeName,population,region,subregion,capital,tld, currency,languages} = dados
+    
+    const {name,topLevelDomain,capital,subregion,region,population,borders,nativeName,flags,currencies,languages} = dados    
+    
     return(
     <CardStyleInfoPais>
-
-        <img src={dados.flags[0]} 
+        <img src={flags.svg} 
         alt={`Bandeira ${name}`}></img>
+
         <div> 
 
             <h2>{dados.name.common}</h2>
@@ -29,13 +21,17 @@ interface Dados {
             <p>Region: <span>{region}</span></p>
             <p>Sub Region: <span>{subregion}</span></p>
             <p>Capital: <span>{capital}</span></p>
-            <p>Top Level Domain: <span>{""}</span></p>
-            <p>Currencies: <span>{""}</span></p>
-            <p>Languages: <span>{languages[0]}</span></p>
+            <p>Top Level Domain: <span>{topLevelDomain}</span></p>
+            <p>Currencies: <span>{currencies[0].name}</span></p>
+            <p>Languages: <span>{languages[0].name}</span></p>
+        </div>       
+        <div>
+        {
+        borders?<>{borders}</>
+        :<>Esse pais não faça fronteiras</>    
+        }
         </div>
-        
-        
-        
+ 
     </CardStyleInfoPais>
     )
 }
