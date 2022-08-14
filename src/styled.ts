@@ -195,18 +195,19 @@ export const CardDescription = styled.div`
     }
  
     @media(max-width: 375px) {
-    img{
-        max-width:80vw ;
-        height: 40vh;
-    }
-    section{
-        margin-top: 30px;
-    }           
-    section > div{
-        gap:10px;
-    }
-}
-section div ul li {
-    margin-top: 12px;
+        img{
+            max-width:80vw ;
+            height: 40vh;
+        }   
+        section{
+            margin-top: 30px;
+        }           
+        section > div{
+            gap:10px;
+        }
+        section div ul li {
+            margin-top: 12px;
+        
+        }
 }
 `
