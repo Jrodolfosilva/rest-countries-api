@@ -4,9 +4,7 @@ import Card from "./Card";
 import {Search,ContainerMain } from "../styled"
 
 interface Pais {
-    name:{
-        common:String
-    },
+    name:String,
     capital:String,
     flags: Object,
     region:String,
