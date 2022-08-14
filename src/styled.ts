@@ -7,7 +7,7 @@ export const Header = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-height: 8vh;
+height: 10vh;
 line-height: 8vh;
 padding: 0 60px;
 border-bottom:4px solid hsl(0, 0%, 95%) ;
@@ -36,7 +36,7 @@ export const Search = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 0 60px;
-    margin-top:10px;
+    margin-top:30px;
         input {
             /* border:4px solid hsl(0, 0%, 95%) ; */
             box-shadow: 2px  2px hsl(0, 0%, 95%), -2px -2px hsl(0, 0%, 95%) ;
@@ -44,8 +44,7 @@ export const Search = styled.div`
             width: 350px;
             padding:10px 30px;
             border-radius: 2px;
-            position: relative;
-            
+                    
         }
         select{
             font-size: 12px;
@@ -125,4 +124,89 @@ margin: 10px 60px;
             
 }
 
+`
+export const ContainerDescription = styled.div`
+    padding: 40px 60px;
+    input{
+        width: 108px;
+        padding: 2px;
+        margin-bottom: 40px;
+        font-weight: 600;
+    }
+    @media(max-width: 375px) {
+    padding: 40px 10vw;
+            
+}
+
+`
+export const CardDescription = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    img{
+        width: 500px;
+    }
+    section{
+        width: 500px;
+        /* background-color: beige; */
+        h2{
+            margin-bottom: 15px;
+        }
+    }
+    section > div{
+        /* background-color: red; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+            p{
+                font-weight: 700;
+                margin-top: 8px;
+                span{
+                    font-weight: 600;
+                }
+            }
+        
+    }
+    span{
+        font-weight: 700;
+        margin-top: 35px;
+    }
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap:15px;
+         /* background-color: blue;  */
+        
+        li{
+            list-style: none;
+            display: block;
+            /* background-color: yellow;  */
+            height: 20px;
+            width: 60px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 4px  4px hsl(0, 0%, 95%), -4px -4px hsl(0, 0%, 95%) ;
+
+        }
+    }
+ 
+    @media(max-width: 375px) {
+    img{
+        max-width:80vw ;
+        height: 40vh;
+    }
+    section{
+        margin-top: 30px;
+    }           
+    section > div{
+        gap:10px;
+    }
+}
+section div ul li {
+    margin-top: 12px;
+}
 `
