@@ -1,6 +1,8 @@
 import styled from "styled-components"
-import lupa from "./img/lupa.png"
+
 //header
+
+
 
 export const Header = styled.div`
 
@@ -11,6 +13,7 @@ height: 10vh;
 line-height: 8vh;
 padding: 0 60px;
 border-bottom:4px solid hsl(0, 0%, 95%) ;
+
     div{
         display: flex;
         align-items: center;
@@ -38,9 +41,7 @@ export const Search = styled.div`
     padding: 0 60px;
     margin-top:30px;
         input {
-            /* border:4px solid hsl(0, 0%, 95%) ; */
-            box-shadow: 2px  2px hsl(0, 0%, 95%), -2px -2px hsl(0, 0%, 95%) ;
-            border: none;
+            border:4px solid hsl(0, 0%, 95%);
             width: 350px;
             padding:10px 30px;
             border-radius: 2px;
@@ -51,10 +52,9 @@ export const Search = styled.div`
             font-weight: 700;
             padding: 2px 10px;
             border-radius: 2px;
-            /* border:4px solid hsl(0, 0%, 95%) ; */
+            border:4px solid hsl(0, 0%, 95%) ;
             border: none;
             background-color: #ffff;
-            box-shadow: 2px  2px hsl(0, 0%, 95%), -2px -2px hsl(0, 0%, 95%) ;
             cursor: pointer;
 
                 option{
@@ -85,8 +85,7 @@ display: block;
 width:250px ;
 height: 270px;
 border-radius: 8px;
-/* border:4px solid hsl(0, 0%, 95%) ; */
-box-shadow: 4px  4px hsl(0, 0%, 95%), -4px -4px hsl(0, 0%, 95%) ;
+border:4px solid hsl(0, 0%, 95%);
 margin-top: 45px;
 cursor: pointer;
 transition: 0.3s;
@@ -95,7 +94,7 @@ transition: 0.3s;
     }
     img{
         object-fit: cover;
-        width: 250px;
+        width: 242px;
         height: 140px;
         border-radius: 4px 4px 0 0;
     }
@@ -147,6 +146,7 @@ export const CardDescription = styled.div`
 
     img{
         width: 500px;
+        height: 350px;
     }
     section{
         width: 500px;
@@ -164,6 +164,7 @@ export const CardDescription = styled.div`
                 font-weight: 700;
                 margin-top: 8px;
                 span{
+                    margin-left: 6px;
                     font-weight: 600;
                 }
             }
@@ -177,20 +178,17 @@ export const CardDescription = styled.div`
         display: flex;
         flex-wrap: wrap;
         align-items: flex-end;
-        justify-content: space-between;
-        gap:15px;
+        /* justify-content: space-between; */
          /* background-color: blue;  */
-        
+        gap:20px;
         li{
-            list-style: none;
             display: block;
-            /* background-color: yellow;  */
-            height: 20px;
-            width: 60px;
+            list-style: none;
+            width: 64px;
             text-align: center;
             font-weight: 600;
-            box-shadow: 4px  4px hsl(0, 0%, 95%), -4px -4px hsl(0, 0%, 95%) ;
-
+            border:4px solid hsl(0, 0%, 95%);
+            color:red;
         }
     }
  

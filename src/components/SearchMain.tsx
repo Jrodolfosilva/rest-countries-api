@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useMemo} from "react";
 import axios from "axios";
 import Card from "./Card";
 import {Search,ContainerMain } from "../styled"
@@ -11,13 +11,13 @@ interface Pais {
     population:String
 }
 
-const Main = ()=>{
+const SearchMain = ()=>{
     const [dados,setDados] = useState<Pais[]>([])
     const [search,setSearch] = useState("")
     const [region,setRegion] = useState("")
     const [error,setError] = useState(false)    
 
-    
+
     useEffect(()=>{
         
         const url = `https://restcountries.com/v2/all?fields=name,nativeName,capital,flags,population,region`    
@@ -31,8 +31,9 @@ const Main = ()=>{
 
     },[])
 
+//colocar essa logica dentro de um menu para o processor só ser refeito caso haja alteração no search
         let response = dados.sort(function(a,b):any{
-        if(a.name.common < b.name.common){
+        if(a.name < b.name){
             return -1
         }
         else{
@@ -88,5 +89,5 @@ const RenderSearch= ()=>{
         
     )
 }
-export default Main
+export default SearchMain
 

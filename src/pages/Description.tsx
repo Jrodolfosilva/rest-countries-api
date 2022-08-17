@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
-import { useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import CardPais from "../components/CardPais";
 import {ContainerDescription} from "../styled"
 
@@ -12,6 +12,8 @@ import {ContainerDescription} from "../styled"
 const Description = ()=>{
     const [dados,setDados]= useState([])
     const [error,setError]= useState(false)
+    const back = useNavigate()
+
     const {name} = useParams()
 
     useEffect(()=>{
@@ -22,7 +24,7 @@ const Description = ()=>{
 },[])
 
 const response = dados.filter((pais)=>pais?.name.toLowerCase().includes(name?.toLowerCase()))
-
+console.log(response)
 
 
 const RenderPais= ()=>{
@@ -38,11 +40,11 @@ const RenderPais= ()=>{
     )
 }
 
-// console.log(fronteiras)
-
     return(
         <ContainerDescription>
-        <input type="button" onClick={()=>alert("")}  value="<- Back"
+        <input type="button"
+         onClick={()=>back('/')} 
+         value="<- Back"
         />
         <RenderPais/>
         </ContainerDescription>
