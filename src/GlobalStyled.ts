@@ -1,11 +1,14 @@
 import {createGlobalStyle} from "styled-components"
 
 
-interface Props {
-    theme:{
-        bgColor:String
-    }
-}
+
+// interface ModeTheme {
+//     theme:{
+//         bgColor:string,
+//         textColor:string,
+//         borderColor:string
+//     }
+// }
 
 export const GlobalStyled = createGlobalStyle`
 
@@ -16,7 +19,7 @@ export const GlobalStyled = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color:  hsl(200, 15%, 8%);
+    color: black /*${(props)=>props.theme.textColor}*/;
     text-decoration: none;
     font-family: 'Nunito Sans', sans-serif;
 }
@@ -26,9 +29,7 @@ html{
 
 body{
     
-}
-body.dark{
-    background-color: hsl(207, 26%, 17%);
+    background-color: #fff/*${(props)=>props.theme.bgColor}*/;
 }
 `
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { Header} from "../styled"
 // import moom from "../img/moon.png"
