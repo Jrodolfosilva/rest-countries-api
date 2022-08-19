@@ -4,7 +4,9 @@ import {useNavigate, useParams} from "react-router-dom";
 import CardPais from "../components/CardPais";
 import {ContainerDescription} from "../styled"
 
-
+type Pais = {
+    name:String
+}
 
 
 
@@ -23,7 +25,7 @@ const Description = ()=>{
     
 },[])
 
-const response = dados.filter((pais)=>pais?.name.toLowerCase().includes(name?.toLowerCase()))
+const response = dados.filter((pais:any)=>pais?.name.toLowerCase().includes(name?.toLowerCase()))
 console.log(response)
 
 
@@ -33,7 +35,7 @@ const RenderPais= ()=>{
         <>
         {!response.length && !error?<p>Carregando...</p>:null}
         {response.length ?
-            response.map((res)=>(<CardPais key={res.name}  dados={res}/>)):[]
+            response.map((res:any)=>(<CardPais key={res.name}  dados={res}/>)):[]
         }   
         {error?<>Error</>:[]}    
         </>

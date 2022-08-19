@@ -1,19 +1,16 @@
+
 import {BrowserRouter,Routes,Route} from "react-router-dom"
+import { GlobalStyled } from "./GlobalStyled"
 import Description from "./pages/Description"
 import ComponentHeader from "./components/Header"
 import ComponentMain from "./components/SearchMain"
-import { GlobalStyled } from "./GlobalStyled"
-import {ThemeProvider} from "styled-components"
-
+import {ligthMode,darkMode} from "./theme/Themes"
 
 function App() {
-const colors = {
-  bg:"#000"
-}
+
   return (
      <BrowserRouter>
      <GlobalStyled/>
-     <ThemeProvider theme={colors}>
         <div className="App">
           <ComponentHeader/>
 
@@ -23,7 +20,6 @@ const colors = {
       </Routes>
       
         </div>
-      </ThemeProvider>
     </BrowserRouter>
   )
 }

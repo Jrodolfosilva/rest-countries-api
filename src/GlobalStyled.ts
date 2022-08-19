@@ -1,6 +1,12 @@
 import {createGlobalStyle} from "styled-components"
 
 
+interface Props {
+    theme:{
+        bgColor:String
+    }
+}
+
 export const GlobalStyled = createGlobalStyle`
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
@@ -22,9 +28,8 @@ body{
     
 }
 body.dark{
-    background-color: hsl(207, 26%, 17%); 
+    background-color: hsl(207, 26%, 17%);
 }
-
 `
 
 /*- Cinza escuro (entrada no modo claro): hsl(0, 0%, 52%)
