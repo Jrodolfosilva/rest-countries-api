@@ -13,7 +13,6 @@ height: 10vh;
 line-height: 8vh;
 padding: 0 60px;
 border-bottom:4px solid hsl(0, 0%, 95%) ;
-
     div{
         display: flex;
         align-items: center;

@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { Header} from "../styled"
-// import moom from "../img/moon.png"
-// import sol from "../img/sol.png"
+import moom from "../img/moon.png"
+import sol from "../img/sol.png"
 
 
 const ComponentHeader = ()=>{
@@ -10,6 +10,8 @@ const ComponentHeader = ()=>{
     const darkMod = ()=>{
         setDark(!dark)
         document.querySelector("body")?.classList.toggle("dark")
+
+        //falta o theme
 
     }
     
@@ -21,7 +23,7 @@ const ComponentHeader = ()=>{
         <div
         onClick={darkMod}
         >
-        {/* <img src={dark?sol:moom} alt="troca"/> */}
+        <img src={dark?sol:moom} alt="troca"/>
         <span>
             {
             dark?"Ligth Mode":"Dark Mode"
